@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules
+sanitybackend/node_modules
 /.pnp
 .pnp.js
 
@@ -18,6 +19,9 @@ node_modules
 # misc
 .DS_Store
 *.pem
+.env
+.env.production
+.env.development
 
 # debug
 npm-debug.log*
@@ -27,7 +31,6 @@ yarn-error.log*
 
 # local env files
 .env*.local
-.env.development
 
 # vercel
 .vercel
