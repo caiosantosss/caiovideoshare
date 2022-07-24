@@ -9,8 +9,14 @@ interface IProps {
 const Home = ({ videos }: IProps) => {
   console.log(videos);
   return (
-    <div className='text-3x1 font-bold underline'>
-      Caio Video Share
+    <div className='flex flex-col gap-10 videos h-full'>
+      {videos.length ? (
+        videos.map((video: Video) => (
+          <VideoCard post={video} key={video._id} />
+        ))
+      ) : (
+        <NoResults text={'No Videos'} />
+      )}
     </div>
   )
 }
