@@ -17,7 +17,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const onVideoPres = () => {
+  const onVideoPress = () => {
     if (playing) {
       videoRef?.current?.pause();
       setPlaying(false);
@@ -79,11 +79,11 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
           {isHover && (
             <div>
               {playing ? (
-                <button>
+                <button onClick={onVideoPress}>
                   <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
                 </button>
               ) : (
-                <button>
+                <button onClick={onVideoPress}>
                   <BsFillPlayFill className='text-black text-2xl lg:text-4xl' />
                 </button>
               )},
