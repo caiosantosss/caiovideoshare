@@ -40,6 +40,20 @@ const Navbar = () => {
                 <span className='hidden md:block'>Upload</span>
               </button>
             </Link>
+            {userProfile.image && (
+              <Link href='/'>
+                <>
+                  <Image
+                    width={62}
+                    height={62}
+                    className="rounded-full"
+                    src={userProfile.image}
+                    alt="profile pic"
+                    layout="responsive"
+                  />
+                </>
+              </Link>
+            )}
           </div>
         ) : (
           <GoogleLogin
