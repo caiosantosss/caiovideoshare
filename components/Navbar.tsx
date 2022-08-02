@@ -53,7 +53,15 @@ const Navbar = () => {
                 </>
               </Link>
             )}
-            <button></button>
+            <button
+              type="button"
+              className='px-2'
+              onClick={() => {
+                googleLogout();
+              }}
+            >
+              <AiOutlineLogout color='red' fontSize={25} />
+            </button>
           </div>
         ) : (
           <GoogleLogin
