@@ -87,7 +87,15 @@ const Upload = () => {
                 )}
               </div>
             )}
+            {wrongFileType && (
+              <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[250px]'>
+                Wrong file type. Please upload a video file.
+              </p>
+            )}
           </div>
+        </div>
+        <div className='flex flex-col gap-3 pb-10'>
+          <label className='text-md font-medium'>Caption</label>
         </div>
       </div>
     </div>
