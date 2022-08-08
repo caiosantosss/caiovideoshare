@@ -96,6 +96,10 @@ const Upload = () => {
         </div>
         <div className='flex flex-col gap-3 pb-10'>
           <label className='text-md font-medium'>Caption</label>
+          <input
+            type='text'
+            value=''
+          />
         </div>
       </div>
     </div>
