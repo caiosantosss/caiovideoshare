@@ -14,6 +14,9 @@ const Upload = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>();
   const [wrongFileType, setWrongFileType] = useState(false);
+  const [caption, setCaption] = useState('');
+  const [category, setCategory] = useState(topics[0].name);
+  const [savingPost, setSavingPost] = useState(false);
 
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
