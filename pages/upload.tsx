@@ -11,7 +11,7 @@ import { client } from '../utils/client';
 import { topics } from '../utils/constants';
 
 const Upload = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<Boolean>(false);
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>();
   const [wrongFileType, setWrongFileType] = useState(false);
   const [caption, setCaption] = useState('');
@@ -73,7 +73,7 @@ const Upload = () => {
       <div className='bg-white rounded-lg w-[60%] xl:h-[80vh] flex gap-6 flex-wrap justify-between items-center p-14 pt-6'>
         <div>
           <div>
-            <p className='text-2xl font-bold'>Upload Videos</p>
+            <p className='text-2xl font-bold'>Upload Video</p>
             <p className='text-md text-gray-400 mt-1'>Post a video to your account</p>
           </div>
           <div className='border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[260px] h-[460px] cursor-pointer hover:border-red-300 hover:bg-gray-100'>
@@ -113,10 +113,10 @@ const Upload = () => {
                         Select File
                       </p>
                       <input
-                        type="text"
+                        type="file"
                         name='upload-video'
-                        onChange={uploadVideo}
-
+                        onChange={(e) => uploadVideo(e)}
+                        className='w-0 h-0'
                       />
                     </div>
                   </label>
