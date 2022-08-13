@@ -26,9 +26,13 @@ const Upload = () => {
     const fileTypes = ['video/mp4, video/webm', 'video/ogg'];
 
     if (fileTypes.includes(selectedFile.type)) {
-      client.assets.upload('file', selectedFile, {
-        contentType: selectedFile.type,
-        filename: selectedFile.name
+      setWrongFileType(false);
+      setIsLoading(true);
+
+      client.assets
+        .upload('file', selectedFile, {
+          contentType: selectedFile.type,
+          filename: selectedFile.name
       })
         .then((data) => {
           setVideoAsset(data);
