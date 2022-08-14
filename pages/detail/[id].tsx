@@ -9,15 +9,23 @@ import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 import axios from 'axios';
 import { BASE_URL } from '../../utils';
 
-const Detail = () => {
+interface Iprops {
+  postDetails: any;
+}
+
+const Detail = ({ postDetails }: Iprops ) => {
   return (
     <div>Detail</div>
   )
 }
 
 export const getServerSideProps = async ({
-  params: { id } }) => {
+  params: { id } }: { params: {id: string }}) => {
     const { data } = await axios.get(`${BASE_URL}/api/post/${id}`);
+
+    return {
+      props: { postDetail: data }
+    }
 }
 
 export default Detail
