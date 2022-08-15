@@ -15,8 +15,16 @@ interface Iprops {
 }
 
 const Detail = ({ postDetails }: Iprops ) => {
+  const [post, setPost] = useState(postDetails);
+
+  const videoRef = useRef(null);
+
+  if(!post) return null;
+
   return (
-    <div>Detail</div>
+    <div>
+      Detail
+    </div>
   )
 }
 
