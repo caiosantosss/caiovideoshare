@@ -8,9 +8,10 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 import axios from 'axios';
 import { BASE_URL } from '../../utils';
+import { Video } from '../../types';
 
 interface Iprops {
-  postDetails: any;
+  postDetails: Video,
 }
 
 const Detail = ({ postDetails }: Iprops ) => {
