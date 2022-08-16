@@ -23,7 +23,7 @@ const Detail = ({ postDetails }: Iprops ) => {
 
   return (
     <div>
-      Detail
+
     </div>
   )
 }
