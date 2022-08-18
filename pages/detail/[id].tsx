@@ -29,6 +29,15 @@ const Detail = ({ postDetails }: Iprops ) => {
             < MdOutlineCancel className='text-white text-[35px]' />
           </p>
         </div>
+        <div className='relative'>
+          <div className='lg:h-[100vh] h-[60vh]'>
+            <video
+              src={post.video.asset.url}
+            >
+
+            </video>
+          </div>
+        </div>
       </div>
     </div>
   )
