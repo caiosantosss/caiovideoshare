@@ -7,6 +7,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 import axios from 'axios';
+
 import { BASE_URL } from '../../utils';
 import { Video } from '../../types';
 
@@ -17,8 +18,17 @@ interface Iprops {
 const Detail = ({ postDetails }: Iprops ) => {
   const [post, setPost] = useState(postDetails);
   const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const videoRef = useRef(null);
+  const onVideoClick = () => {
+    if(playing) {
+      videoRef?.current?.pause();
+      setPlaying(false);
+    } else {
+      videoRef?.current?.play();
+      setPlaying(true);
+    }
+  }
 
   if(!post) return null;
 
