@@ -32,6 +32,12 @@ const Detail = ({ postDetails }: Iprops ) => {
     }
   }
 
+  useEffect(() => {
+    if (post && videoRef?.current) {
+      videoRef.current.muted = isVideoMuted;
+    }
+  }, [post, isVideoMuted]);
+
   if(!post) return null;
 
   return (
