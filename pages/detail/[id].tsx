@@ -11,6 +11,8 @@ import axios from 'axios';
 import { BASE_URL } from '../../utils';
 import { Video } from '../../types';
 import useAuthStore from '../../store/authStore'
+import LikeButton from '../../components/LikeButton';
+import Comments from '../../components/Comments';
 
 interface Iprops {
   postDetails: Video,
@@ -117,10 +119,14 @@ const Detail = ({ postDetails }: Iprops ) => {
           <p className='px-10 text-lg text-gray-600'>{post.caption}</p>
           <div className='mt-10 px-10'>
             {userProfile && (
-              <LikeButton />
+              <LikeButton
+
+              />
             )}
           </div>
-          <Comments />
+          <Comments
+
+          />
         </div>
       </div>
     </div>
