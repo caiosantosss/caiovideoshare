@@ -63,6 +63,11 @@ const Comments = ({comment, setComment, addComment, comments, isPostingComment}:
                         </div>
                       </div>
                     </Link>
+                    <div>
+                      <p>
+                        {item.comment}
+                      </p>
+                    </div>
                   </div>
                 )
               ))}
