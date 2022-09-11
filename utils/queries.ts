@@ -58,7 +58,7 @@ export const postDetailQuery = (postId: string | string[]) => {
   return query;
 };
 
-export const searchPostsQuery = (searchTerm: any) => {
+export const searchPostsQuery = (searchTerm: string | string[]) => {
   const query = `*[_type == "post" && caption match '${searchTerm}*' || topic match '${searchTerm}*'] {
     _id,
      caption,

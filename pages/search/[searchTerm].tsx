@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { GoVerified } from "react-icons/go";
 import axios from "axios";
@@ -11,20 +11,19 @@ import { IUser, Video } from "../../types";
 import { BASE_URL } from "../../utils";
 import useAuthStore from "../../stores/useAuthStore";
 
-const Search = () => {
+
+const Search = ({ videos }: {videos: Video[]}) => {
   return (
     <div>Search</div>
   )
 }
 
-export const getServerSideProps = async ({
-  params: { searchTerm },
-}) => {
+export const getServerSideProps = async ({ params: { searchTerm } }: { params: { searchTerm: string } }) => {
   const res = await axios.get(`${BASE_URL}/api/search/${searchTerm}`);
 
   return {
     props: {
-      data: res.data
+      data: { videos: res.data}
     }
   }
 }
