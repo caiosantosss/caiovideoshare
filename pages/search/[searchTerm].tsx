@@ -13,8 +13,22 @@ import useAuthStore from "../../stores/useAuthStore";
 
 
 const Search = ({ videos }: {videos: Video[]}) => {
+  const [isAccounts, setIsAccounts] = useState(false);
+
+  const accounts = isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
+  const isVideos = !isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
+
   return (
-    <div>Search</div>
+    <div className="w-full">
+      <div className="flex gap-10 mb-10 mt-10 border-b-2 border-gray-200 bg-white w-full">
+        <p className={`text-xl font-semibold cursor-pointer mt-2 ${accounts}`} onClick={() => setIsAccounts(true)}>
+          Accounts
+        </p>
+        <p className={`text-xl font-semibold cursor-pointer mt-2 ${videos}`} onClick={() => setIsAccounts(false)}>
+          Videos
+        </p>
+      </div>
+    </div>
   )
 }
 
