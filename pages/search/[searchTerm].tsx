@@ -14,6 +14,8 @@ import useAuthStore from "../../stores/useAuthStore";
 
 const Search = ({ videos }: {videos: Video[]}) => {
   const [isAccounts, setIsAccounts] = useState(false);
+  const router = useRouter();
+  const { searchTerm } = router.query;
 
   const accounts = isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
   const isVideos = !isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
@@ -24,7 +26,7 @@ const Search = ({ videos }: {videos: Video[]}) => {
         <p className={`text-xl font-semibold cursor-pointer mt-2 ${accounts}`} onClick={() => setIsAccounts(true)}>
           Accounts
         </p>
-        <p className={`text-xl font-semibold cursor-pointer mt-2 ${videos}`} onClick={() => setIsAccounts(false)}>
+        <p className={`text-xl font-semibold cursor-pointer mt-2 ${isVideos}`} onClick={() => setIsAccounts(false)}>
           Videos
         </p>
       </div>
@@ -33,8 +35,14 @@ const Search = ({ videos }: {videos: Video[]}) => {
           Accounts
         </div>
       ) : (
-        <div>
-          Videos
+        <div className="md:mt-16 flex flex-wrap gap-6 md:justify-start">
+          {videos.length ? (
+            videos.map((video: Video, idx ) => (
+              <VideoCard key={idx} post={video} />
+            ))
+          ): (
+            <NoResults text={`No video results for ${searchTerm}`} />
+          )}
         </div>
       )}
     </div>
