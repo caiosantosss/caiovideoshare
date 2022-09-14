@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useState } from "react";
 import Image from "next/image";
 import { GoVerified } from "react-icons/go";
@@ -33,8 +34,39 @@ const Search = ({ videos }: {videos: Video[]}) => {
         </p>
       </div>
       {isAccounts ? (
-        <div>
-          Accounts
+        <div className="md:mt-16">
+          {searchAccounts.length > 0 ? (
+            searchAccounts.map((user: IUser, idx: number) => (
+              <Link href={`/profile/${user._id}`} key={idx}>
+                <div className='flex items-start gap-3'>
+                  <div className='flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded'>
+                    <div className='w-8 h-8'>
+                      <Image
+                        src={user.image}
+                        width={50}
+                        height={50}
+                        className='rounded-full'
+                        alt='profile image'
+                        layout='responsive'
+                      />
+                    </div>
+
+                    <div className='hidden xl:block'>
+                      <p className='flex gap-1 items-center text-md font-bold text-primary lowercase'>
+                        {user.userName.replaceAll(' ', '')}
+                        <GoVerified className='inline text-blue-400' />
+                      </p>
+                      <p className='capitalize text-gray-400 text-xs'>
+                        {user.userName}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))
+          ) : (
+              <NoResults text = {`No video results for ${searchTerm}`} />
+          )}
         </div>
       ) : (
         <div className="md:mt-16 flex flex-wrap gap-6 md:justify-start">
