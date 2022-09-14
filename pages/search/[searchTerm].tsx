@@ -15,10 +15,12 @@ import useAuthStore from "../../stores/useAuthStore";
 const Search = ({ videos }: {videos: Video[]}) => {
   const [isAccounts, setIsAccounts] = useState(false);
   const router = useRouter();
-  const { searchTerm } = router.query;
+  const { searchTerm }: any = router.query;
+  const { allUsers } = useAuthStore();
 
   const accounts = isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
   const isVideos = !isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
+  const searchAccounts = allUsers.filter((user: IUser) => user.userName.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
     <div className="w-full">
