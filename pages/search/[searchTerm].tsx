@@ -12,7 +12,6 @@ import { IUser, Video } from "../../types";
 import { BASE_URL } from "../../utils";
 import useAuthStore from "../../stores/useAuthStore";
 
-
 const Search = ({ videos }: {videos: Video[]}) => {
   const [isAccounts, setIsAccounts] = useState(false);
   const router = useRouter();
@@ -38,28 +37,26 @@ const Search = ({ videos }: {videos: Video[]}) => {
           {searchAccounts.length > 0 ? (
             searchAccounts.map((user: IUser, idx: number) => (
               <Link href={`/profile/${user._id}`} key={idx}>
-                <div className='flex items-start gap-3'>
-                  <div className='flex gap-3 hover:bg-primary p-2 cursor-pointer font-semibold rounded'>
-                    <div className='w-8 h-8'>
-                      <Image
-                        src={user.image}
-                        width={50}
-                        height={50}
-                        className='rounded-full'
-                        alt='profile image'
-                        layout='responsive'
-                      />
-                    </div>
+                <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded border-b-2 border-gray-200'>
+                  <div>
+                    <Image
+                      src={user.image}
+                      width={50}
+                      height={50}
+                      className='rounded-full'
+                      alt='profile image'
+                      layout='responsive'
+                    />
+                  </div>
 
-                    <div className='hidden xl:block'>
-                      <p className='flex gap-1 items-center text-md font-bold text-primary lowercase'>
-                        {user.userName.replaceAll(' ', '')}
-                        <GoVerified className='inline text-blue-400' />
-                      </p>
-                      <p className='capitalize text-gray-400 text-xs'>
-                        {user.userName}
-                      </p>
-                    </div>
+                  <div className='hidden xl:block'>
+                    <p className='flex gap-1 items-center text-md font-bold text-primary lowercase'>
+                      {user.userName.replaceAll(' ', '')}
+                      <GoVerified className='inline text-blue-400' />
+                    </p>
+                    <p className='capitalize text-gray-400 text-xs'>
+                      {user.userName}
+                    </p>
                   </div>
                 </div>
               </Link>
