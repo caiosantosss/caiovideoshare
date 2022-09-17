@@ -33,25 +33,25 @@ const Upload = () => {
 
     if (fileTypes.includes(selectedFile.type)) {
       setWrongFileType(false);
-      setIsLoading(true);
+      setLoading(true);
 
       client.assets
         .upload('file', selectedFile, {
           contentType: selectedFile.type,
-          filename: selectedFile.name
+          filename: selectedFile.name,
       })
         .then((data) => {
           setVideoAsset(data);
-          setIsLoading(false);
+          setLoading(false);
         })
     } else {
-      setIsLoading(false);
+      setLoading(false);
       setWrongFileType(true);
     }
   }
 
   const handlePost = async () => {
-    if(caption && videoAsset?._id && category) {
+    if(caption && videoAsset?._id && topic) {
       setSavingPost(true);
 
       const document = {
@@ -62,21 +62,28 @@ const Upload = () => {
           asset: {
             _type: 'reference',
             _ref: videoAsset?._id
-          }
+          },
         },
         userId: userProfile?._id,
         postedBy: {
           _type: 'postedBy',
           _ref: userProfile?._id
         },
-        topic: category
+        topic,
       }
 
-      await axios.post(`${BASE_URL}/api/posts`, document);
+      await axios.post(`${BASE_URL}/api/post`, document);
 
       router.push('/');
     }
-  }
+  };
+
+  const handleDiscard = () => {
+    setSavingPost(false);
+    setVideoAsset(undefined);
+    setCaption('');
+    setTopic('');
+  };
 
   return (
     <div className='flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center'>
@@ -87,22 +94,13 @@ const Upload = () => {
             <p className='text-md text-gray-400 mt-1'>Post a video to your account</p>
           </div>
           <div className='border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[260px] h-[460px] cursor-pointer hover:border-red-300 hover:bg-gray-100'>
-            {isLoading ? (
-              <p>Uploading...</p>
+            {loading ? (
+              <p className='text-center text-3xl text-red-400 font-semibold'>
+                Uploading...
+              </p>
             ) : (
               <div>
-                {videoAsset ? (
-                  <div>
-                    <video
-                      src={videoAsset.url}
-                      loop
-                      controls
-                      className='rounded-xl h-[45px] mt-16 bg-black'
-                    >
-
-                    </video>
-                  </div>
-                ) : (
+                {!videoAsset ? (
                   <label className='cursor-pointer'>
                     <div className='flex flex-col items-center justify-center h-full'>
                       <div className='flex flex-col items-center justify-center'>
@@ -115,7 +113,7 @@ const Upload = () => {
                       </div>
                       <p className='text-gray-400 text-center mt-10 text-sm loading-10'>
                         MP4 or WebM or OGG <br />
-                        720x1280 or higher <br />
+                        720x1280 resolution or higher <br />
                         Up to 10 minutes <br />
                         Less than 2GB
                       </p>
@@ -130,6 +128,16 @@ const Upload = () => {
                       />
                     </div>
                   </label>
+                ) : (
+                <div className=' rounded-3xl w-[300px]  p-4 flex flex-col gap-6 justify-center items-center'>
+                  <video
+                    src={videoAsset?.url}
+                    loop
+                    controls
+                    className='rounded-xl h-[462px] mt-16 bg-black'
+                  >
+                  </video>
+                </div>
                 )}
               </div>
             )}
