@@ -171,26 +171,27 @@ const Upload = () => {
             onChange={(e) => setCategory(e.target.value)}
             className='outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer'
           >
-            {topics.map((topic) => (
+            {topics.map((item) => (
               <option
-                key={topic.name}
-                value={topic.name}
+                key={item.name}
+                value={item.name}
                 className='outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300'
               >
-                {topic.name}
+                {item.name}
               </option>
             ))}
           </select>
           <div className='flex gap-6 mt-10'>
             <button
-              onClick={() => {}}
+              onClick={handleDiscard}
               type='button'
               className='border-gray-300 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
             >
               Discard
             </button>
             <button
-              onClick={() => handlePost()}
+              disabled={videoAsset?.url ? false : true}
+              onClick={handlePost}
               type='button'
               className='bg-[#F51997] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
             >
@@ -200,7 +201,7 @@ const Upload = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Upload
+export default Upload;
