@@ -103,51 +103,61 @@ const Upload = () => {
                 {!videoAsset ? (
                   <label className='cursor-pointer'>
                     <div className='flex flex-col items-center justify-center h-full'>
-                      <div className='flex flex-col items-center justify-center'>
+                      <div className='flex flex-col justify-center items-center'>
                         <p className='font-bold text-xl'>
                           <FaCloudUploadAlt className='text-gray-300 text-6xl' />
                         </p>
                         <p className='text-xl font-semibold'>
-                          Upload Video
+                          Select video to upload
                         </p>
                       </div>
-                      <p className='text-gray-400 text-center mt-10 text-sm loading-10'>
-                        MP4 or WebM or OGG <br />
+
+                      <p className='text-gray-400 text-center mt-10 text-sm leading-10'>
+                        MP4 or WebM or ogg <br />
                         720x1280 resolution or higher <br />
                         Up to 10 minutes <br />
-                        Less than 2GB
+                        Less than 2 GB
                       </p>
-                      <p className='bg-[#F51997] text-center mt-10 rounded text-white text-md font-medium p-2 w-52 outline-none'>
-                        Select File
+                      <p className='bg-[#F51997] text-center mt-8 rounded text-white text-md font-medium p-2 w-52 outline-none'>
+                        Select file
                       </p>
-                      <input
-                        type="file"
-                        name='upload-video'
-                        onChange={(e) => uploadVideo(e)}
-                        className='w-0 h-0'
-                      />
                     </div>
+                    <input
+                      type='file'
+                      name='upload-video'
+                      onChange={(e) => uploadVideo(e)}
+                      className='w-0 h-0'
+                    />
                   </label>
                 ) : (
-                <div className=' rounded-3xl w-[300px]  p-4 flex flex-col gap-6 justify-center items-center'>
-                  <video
-                    src={videoAsset?.url}
-                    loop
-                    controls
-                    className='rounded-xl h-[462px] mt-16 bg-black'
-                  >
-                  </video>
-                </div>
+                  <div className=' rounded-3xl w-[300px]  p-4 flex flex-col gap-6 justify-center items-center'>
+                    <video
+                      className='rounded-xl h-[462px] mt-16 bg-black'
+                      controls
+                      loop
+                      src={videoAsset?.url}
+                    />
+                    <div className=' flex justify-between gap-20'>
+                      <p className='text-lg'>{videoAsset.originalFilename}</p>
+                      <button
+                        type='button'
+                        className=' rounded-full bg-gray-200 text-red-400 p-2 text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out'
+                        onClick={() => setVideoAsset(undefined)}
+                      >
+                        <MdDelete />
+                      </button>
+                    </div>
+                  </div>
                 )}
               </div>
             )}
+          </div>
             {wrongFileType && (
               <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[250px]'>
                 Wrong file type. Please upload a video file.
               </p>
             )}
           </div>
-        </div>
         <div className='flex flex-col gap-3 pb-10'>
           <label className='text-md font-medium'>Caption</label>
           <input
