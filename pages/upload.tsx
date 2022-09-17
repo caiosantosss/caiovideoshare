@@ -12,15 +12,20 @@ import { topics } from '../utils/constants';
 import { BASE_URL } from '../utils';
 
 const Upload = () => {
-  const [isLoading, setIsLoading] = useState<Boolean>(false);
+  const [loading, setLoading] = useState<Boolean>(false);
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>();
-  const [wrongFileType, setWrongFileType] = useState(false);
+  const [wrongFileType, setWrongFileType] = useState<Boolean>(false);
   const [caption, setCaption] = useState('');
   const [category, setCategory] = useState(topics[0].name);
-  const [savingPost, setSavingPost] = useState(false);
+  const [savingPost, setSavingPost] = useState<Boolean>(false);
+  const [topic, setTopic] = useState<String>(topics[0].name);
 
-  const { userProfile }: { userProfile: any } = useAuthStore();
+  const userProfile: any = useAuthStore((state) => state.userProfile);
   const router = useRouter();
+
+  useEffect(() => {
+    if (!userProfile) router.push('/');
+  }, [userProfile, router]);
 
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
