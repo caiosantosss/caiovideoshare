@@ -9,7 +9,7 @@ import { ImCancelCircle } from 'react-icons/im';
 import Discover from './Discover';
 import SuggestedAccounts from './SuggestedAccounts';
 import Footer from './Footer';
-import useAuthStore from '../stores/useAuthStore';
+import useAuthStore from '../store/authStore';
 
 
 const Sidebar: NextPage = () => {
