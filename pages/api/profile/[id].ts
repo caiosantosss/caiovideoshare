@@ -3,10 +3,6 @@ import { client } from '../../../utils/client';
 
 import { singleUserQuery, userCreatedPostsQuery, userLikedPostsQuery } from '../../../utils/queries';
 
-type Data = {
-  name: string
-}
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -22,6 +18,7 @@ export default async function handler(
     const userVideos = await client.fetch(userVideoQuery);
     const userLikedVideos = await client.fetch(userLikedVideosQuery);
 
-    res.status(200).json({user: user[0], userVideos, userLikedVideos});
+    const data = { user: user[0], userVideos, userLikedVideos };
+    res.status(200).json(data);
   }
 }
