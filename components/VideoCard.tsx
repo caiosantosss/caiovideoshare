@@ -142,4 +142,4 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   );
 };
 
-export default VideoCard
+export default VideoCard;
