@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { GoVerified } from "react-icons/go";
 import axios from "axios";
@@ -17,46 +17,44 @@ interface IProps {
 }
 
 const Profile = ({ data }: IProps ) => {
-  const [showUserVideos, setShowUserVideos] = useState(true);
-  const { user, userVideos, userLikedVideos } = data;
+  const [showUserVideos, setShowUserVideos] = useState<Boolean>(true);
   const [videosList, setVideosList] = useState<Video[]>([]);
 
+  const { user, userVideos, userLikedVideos } = data;
   const videos = showUserVideos ? 'border-b-2 border-black' : 'text-gray-400';
   const liked = !showUserVideos ? 'border-b-2 border-black' : 'text-gray-400';
 
   useEffect(() => {
-    if (showUserVideos) {
-      setVideosList(userVideos);
-    } else {
-      setVideosList(userLikedVideos);
-    }
-  }, [showUserVideos, userVideos, userLikedVideos]);
+    const fetchVideos = async () => {
+      if (showUserVideos) {
+        setVideosList(userVideos);
+      } else {
+        setVideosList(userLikedVideos);
+      }
+    };
 
+    fetchVideos();
+  }, [showUserVideos, userLikedVideos, userVideos]);
 
   return (
-    <div>
-      <div className="w-full">
-        <div className="flex gap-6 md:gap-10 mb-4 bg-white w-full">
-          <div className='w-16 h-16 md:w-32 md:h-32'>
-            <Image
-              src={user.image}
-              width={120}
-              height={120}
-              className='rounded-full'
-              alt='profile image'
-              layout='responsive'
-            />
+    <div className="w-full">
+      <div className="flex gap-6 md:gap-10 mb-4 bg-white w-full">
+        <div className='w-16 h-16 md:w-32 md:h-32'>
+          <Image
+            src={user.image}
+            width={120}
+            height={120}
+            className='rounded-full'
+            alt='profile image'
+            layout='responsive'
+          />
+        </div>
+        <div>
+          <div className='text-md md:text-2xl font-bold tracking-wider flex gap-2 items-center justify-center lowercase'>
+            <span>{user.userName.replace(/\s+/g, '')} </span>
+            <GoVerified className='text-blue-400 md:text-xl text-md' />
           </div>
-
-          <div className="flex flex-col justify-center">
-            <p className='md:text-2xl tracking-wider flex gap-1 items-center justify-center text-md font-bold text-primary lowercase'>
-              {user.userName.replaceAll(' ', '')}
-              <GoVerified className='inline text-blue-400' />
-            </p>
-            <p className='capitalize md:text-xl text-gray-400 text-xs'>
-              {user.userName}
-            </p>
-          </div>
+          <p className='text-sm font-medium'> {user.userName}</p>
         </div>
       </div>
       <div>
@@ -79,17 +77,21 @@ const Profile = ({ data }: IProps ) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export const getServerSideProps = async ({ params: { id }}: { params: { id: string }}) => {
-  const res = await axios.get(`${BASE_URL}/api/profile/${id}`);
+export const getServerSideProps = async ({
+   params: { userId },
+  }: {
+    params: { userId: string };
+  }) => {
+  const res = await axios.get(`${BASE_URL}/api/profile/${userId}`);
 
   return {
     props: {
       data: res.data
     }
-  }
-}
+  };
+};
 
 export default Profile;
