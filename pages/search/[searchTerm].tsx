@@ -63,7 +63,7 @@ const Search = ({ videos }: {videos: Video[]}) => {
               </Link>
             ))
           ) : (
-              <NoResults text = {`No account results for ${searchTerm}`} />
+            <NoResults text = {`No account results for ${searchTerm}`} />
           )}
         </div>
       ) : (
@@ -90,7 +90,7 @@ export const getServerSideProps = async ({
 
   return {
     props: { videos: res.data},
-  }
-}
+  };
+};
 
-export default Search
+export default Search;
