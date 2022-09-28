@@ -16,7 +16,6 @@ const Upload = () => {
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>();
   const [wrongFileType, setWrongFileType] = useState<Boolean>(false);
   const [caption, setCaption] = useState('');
-  const [category, setCategory] = useState(topics[0].name);
   const [savingPost, setSavingPost] = useState<Boolean>(false);
   const [topic, setTopic] = useState<String>(topics[0].name);
 
@@ -87,7 +86,7 @@ const Upload = () => {
 
   return (
     <div className='flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center'>
-      <div className='bg-white rounded-lg w-[60%] xl:h-[80vh] flex gap-6 flex-wrap justify-between items-center p-14 pt-6'>
+      <div className=' bg-white rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-center items-center p-14 pt-6'>
         <div>
           <div>
             <p className='text-2xl font-bold'>Upload Video</p>
@@ -130,7 +129,7 @@ const Upload = () => {
                     />
                   </label>
                 ) : (
-                  <div className=' rounded-3xl w-[300px]  p-4 flex flex-col gap-6 justify-center items-center'>
+                  <div className='rounded-3xl w-[300px]  p-4 flex flex-col gap-6 justify-center items-center'>
                     <video
                       className='rounded-xl h-[462px] mt-16 bg-black'
                       controls
@@ -153,8 +152,8 @@ const Upload = () => {
             )}
           </div>
             {wrongFileType && (
-              <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[250px]'>
-                Wrong file type. Please upload a video file.
+              <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[260px]'>
+                Wrong file type. Please upload a video file. (mp4 or webm or ogg)
               </p>
             )}
           </div>
@@ -164,12 +163,14 @@ const Upload = () => {
             type='text'
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
-            className='rounded outline-none text-md border-2 border-gray-200 p-2'
+            className='rounded lg:after:w-650 outline-none text-md border-2 border-gray-200 p-2'
           />
-          <label className='text-md font-medium'>Choose a Category</label>
+          <label className='text-md font-medium'>Choose a Topic</label>
           <select
-            onChange={(e) => setCategory(e.target.value)}
-            className='outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer'
+            onChange={(e) => {
+              setTopic(e.target.value);
+            }}
+            className='outline-none lg:w-650 border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer'
           >
             {topics.map((item) => (
               <option
@@ -195,7 +196,7 @@ const Upload = () => {
               type='button'
               className='bg-[#F51997] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
             >
-              Post
+              {savingPost ? 'Posting...' : 'Post'}
             </button>
           </div>
         </div>
