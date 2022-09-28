@@ -15,13 +15,13 @@ const authStore = (set: any) => ({
     const response = await axios.get(`${BASE_URL}/api/users`);
 
     set({ allUsers: response.data });
-  }
-})
+  },
+});
 
-const useAuthStore = create(
+const useAuthStore = create((
   persist(authStore, {
     name: 'auth'
   })
-)
+));
 
 export default useAuthStore;
