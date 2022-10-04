@@ -7,6 +7,11 @@ import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
 import { BsPlay } from 'react-icons/bs';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Slider from '@mui/material/Slider';
+import VolumeDown from '@mui/icons-material/VolumeDown';
+import VolumeUp from '@mui/icons-material/VolumeUp';
 
 interface IProps {
   post: Video;
