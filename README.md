@@ -39,7 +39,7 @@ npm run dev
 
 ## Built With
 - [Typescript](https://www.typescriptlang.org/)
-- [React](https://reactjs.org/) - Back/Front-end
+- [React](https://reactjs.org/) - Front-end
 - [Vercel](https://vercel.com/) - Deployment
 - [Sanity](https://www.sanity.io/) - Database
 - [Bootstrap](https://getbootstrap.com/) — Styling
