@@ -1,34 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CaioVideoShare
+
+This is an kind of clone of tiktok. I was made to study and practice ReactJS.
+<!-- ![Screen Shot 2021-12-09 at 15 46 46](image here) -->
+
+
+<br>
+Website: https://caiovideoshare.vercel.app/
+
 
 ## Getting Started
+### Setup
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
+```
+git clone git@github.com:caiosantosss/caiovideoshare.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You should create and account on sanity.io and create a new project. After that, you should create a new dataset and copy the token to the .env file.
+Also you should create a new project on google cloud platform. There you are going to create a new project and enable the api key.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### ENV Variables
+Create `.env` file
+```
+touch .env
+```
+Inside `.env`, set these variables.
+```
+NEXT_PUBLIC_SANITY_TOKEN = "your sanity token"
+NEXT_PUBLIC_GOOGLE_API_TOKEN = "your google api token"
+NEXT_PUBLIC_BASE_URL = "your base url"
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
+### Run a server
+```
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Built With
+- [Typescript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/) - Back/Front-end
+- [Vercel](https://vercel.com/) - Deployment
+- [Sanity](https://www.sanity.io/) - Database
+- [Bootstrap](https://getbootstrap.com/) — Styling
+- [Tailwind](https://tailwindcss.com/) — Styling
+- [Google Cloud Platform](https://console.cloud.google.com/)
